@@ -18,9 +18,12 @@ def pokemon_by_type():
             if "Water" in values["type"]:
                 water_type['lvl'] += values['level']
                 water_type['qty'] += 1
-        print(f'Tipo: Electrico \u27A4  promedio de nivel: {round((electric_type['lvl'])/electric_type["qty"],2)}\n')
-        print(f'Tipo: Fuego \u27A4  promedio de nivel: {round((fire_type['lvl'])/fire_type["qty"],2)}\n')
-        print(f'Tipo: Agua \u27A4  promedio de nivel: {round((water_type['lvl'])/water_type["qty"],2)}\n')
+        if electric_type['qty'] > 0:
+            print(f'Tipo: Electrico \u27A4  promedio de nivel: {round((electric_type['lvl'])/electric_type["qty"],2)}\n')
+        if fire_type['qty'] > 0:
+            print(f'Tipo: Fuego \u27A4  promedio de nivel: {round((fire_type['lvl'])/fire_type["qty"],2)}\n')
+        if water_type['qty'] > 0:
+            print(f'Tipo: Agua \u27A4  promedio de nivel: {round((water_type['lvl'])/water_type["qty"],2)}\n')
     except FileNotFoundError:
         print("Archivo no encontrado")
         exit()
