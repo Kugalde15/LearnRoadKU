@@ -1,0 +1,3 @@
+- Se crea una carpeta con archivo txt. de prueba con mi nombre para verificar la carpeta main, se realizar para verificar el correcto uso de la plataforma de mi parte.
+
+- Se agregan todos los archivos de practicas existentes hasta el momento en la rama past exercises, esto por solicitud de ejercicio de GIT para poder avanzar.
