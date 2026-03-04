@@ -1,0 +1,8 @@
+		VER VIDEO EN YOUTUBE
+
+1. Abrir el navegador.
+2. Ingresar el URL youtube.com y presionar ENTER.
+3. Buscar el video de su interes en el navegador de YouTube.
+4. Seleccionar el video de su preferencia
+5. Ver el video.
+6. FIN
