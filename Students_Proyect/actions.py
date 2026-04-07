@@ -1,17 +1,18 @@
-import main
 
 
-students_data = []
+import re
 
 
-def add_student():
+def add_student(students_data):
 
     student_name = is_valid_name("Enter the student's full name: ")
     section = is_valid_section("Enter the student section (07A / 11C): ")
 
-    if student_exists(student_name, section):
-            print("\nThe enrolled student already exists, enter a new student\n")
-            return
+    if student_exists(students_data, student_name, section):
+
+        print("\nThe enrolled student already exists, enter a new student\n")
+        input("*"*20)
+        return
 
     spanish_note = validation("Spanish note", "Spanish note: ")
     english_note = validation("English note", "English note: ")
@@ -29,18 +30,18 @@ def add_student():
 
     students_data.append(data)
     data["Average"] = (data["Spanish note"] + data["English note"] + data["Social note"] + data["Science note"]) / 4
-    add_other_student()
+    print("Student added successfully ✅")
+    add_other_student(students_data)
 
 
-def add_other_student():
+def add_other_student(students_data):
 
     print("Do you need to add another student? Yes[Y] / No[AnyKey]: ")
     other_student = input("\u27A4 ").upper()
     if other_student == "Y":
-        add_student()
+        add_student(students_data)
     else:
-        main.run_program()
-
+        return
 
 def validation(str_name, show_str):
 
@@ -59,7 +60,7 @@ def validation(str_name, show_str):
             print(f"{str_name} need to be a number (0 - 100): \n")
 
 
-def see_all_students():
+def see_all_students(students_data):
 
     for val in students_data:
         print(
@@ -75,10 +76,9 @@ def see_all_students():
 
     print("Any key to return to menu")
     input("*"*20)
-    main.run_program()
+    return
 
-
-def top_3_average():
+def top_3_average(students_data):
 
     top3 = []
     count = 0
@@ -93,10 +93,9 @@ def top_3_average():
         print("-"*15)
     print("Any key to return to menu")
     input("*"*20)
-    main.run_program()
+    return
 
-
-def get_global_avg():
+def get_global_avg(students_data):
 
     sum_all_avg = 0
     for val in students_data:
@@ -105,15 +104,14 @@ def get_global_avg():
     print(f"\nThe average of all students is \u27A4  {round(global_avg, 2)}\n")
     print("Any key to return to menu")
     input("*"*20)
-    main.run_program()
+    return
 
-
-def del_student():
+def del_student(students_data):
 
     student_to_delete = is_valid_name("Student's name to deleted: \n")
     section_del = is_valid_section("Section of the student: \n")
     for student in students_data:
-        if student["Student name"].lower() == student_to_delete.lower() and student["Section"].upper() == section_del.upper():
+        if student["Student name"].lower().strip() == student_to_delete.lower().strip() and student["Section"].lower().strip() == section_del.lower().strip():
             sure_del = input(f"You sure to delete '{student['Student name']}' Yes [Y] / No [AnyKey]: \n").upper()
             if sure_del == "Y":
                 students_data.remove(student)
@@ -124,14 +122,14 @@ def del_student():
 
     opc = input("Press [ Y ] to search another student, press [ R ] to return to menu or [ AnyKey ] to exit: \n").upper()
     if opc == "Y" :
-        del_student()
+        del_student(students_data)
     if opc == "R" :
-        main.run_program()
+        return
     else:
         exit()
 
 
-def failed_students():
+def failed_students(students_data):
 
     fail_students = []
     note = 60
@@ -160,8 +158,7 @@ def failed_students():
 
     print("Any key to return to menu")
     input("*"*20)
-    main.run_program()
-
+    return
 
 def is_valid_name(show_str):
 
@@ -200,7 +197,7 @@ def is_valid_section(show_str):
         return data
 
 
-def student_exists(name, section):
+def student_exists(students_data, name, section):
 
     for val in students_data:
         if val["Student name"].strip().lower() == name.strip().lower() and val["Section"].strip().lower() == section.strip().lower():

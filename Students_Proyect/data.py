@@ -1,5 +1,4 @@
 import csv
-from actions import students_data
 
 
 students_headers = (
@@ -27,10 +26,9 @@ def export_students(file_path, data, headers):
 
 def import_students(file_path):
 
-    students_data.clear()
+    students_data = []
 
     try:
-
         with open(file_path, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
             for row in reader:
@@ -40,11 +38,11 @@ def import_students(file_path):
                 row["Science note"] = int(row["Science note"])
                 row["Average"] = float(row["Average"])
                 students_data.append(row)
-        print("\nImport successful \u2705\n")
-        print("Any key to return to menu")
+
+        print("Import successful ✅")
         input("*"*10)
 
     except FileNotFoundError:
-        print("File not found \u274c")
+        print("File not found ❌")
 
     return students_data
